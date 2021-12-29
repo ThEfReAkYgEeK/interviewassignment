@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:technosoftwares/planspage.dart';
+import 'package:technosoftwares/centerwidget.dart';
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PlansPage(),
+      home: CentralWidget(),
     );
   }
 }

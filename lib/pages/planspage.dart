@@ -8,6 +8,12 @@ class PlansPage extends StatefulWidget {
 class _PlansPageState extends State<PlansPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "PlansPage",
+        ),
+      ),
+    );
   }
 }
