@@ -11,6 +11,7 @@ class CentralWidget extends StatefulWidget {
 }
 
 class _CentralWidgetState extends State<CentralWidget> {
+  bool isCharging = false;
   int curentTab = 0;
   final List<Widget> screens = [
     HomePage(),
@@ -41,7 +42,6 @@ class _CentralWidgetState extends State<CentralWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: PageStorage(
@@ -65,40 +65,79 @@ class _CentralWidgetState extends State<CentralWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [0, 1, 2, 3, 4]
                 .map<Widget>(
-                  (index) => Container(
-                    width: 0.2 * width,
-                    child: MaterialButton(
-                      minWidth: 40,
-                      onPressed: () {
-                        setState(
-                          () {
-                            currentScreen = screens[index];
-                            curentTab = index;
-                          },
-                        );
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
-                            icons[index],
-                            color: curentTab == index
-                                ? Colors.green
-                                : Colors.grey[800],
-                          ),
-                          Text(
-                            texts[index],
-                            style: TextStyle(
-                              color: curentTab == index
-                                  ? Colors.green
-                                  : Colors.grey[800],
-                              fontSize: 0.023 * width,
+                  (index) => index == 2
+                      ? Visibility(
+                          visible: isCharging ? true : false,
+                          child: Container(
+                            width: 0.2 * width,
+                            child: MaterialButton(
+                              minWidth: 40,
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    currentScreen = screens[index];
+                                    curentTab = index;
+                                  },
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Icon(
+                                    icons[index],
+                                    color: curentTab == index
+                                        ? Colors.green
+                                        : Colors.grey[800],
+                                  ),
+                                  Text(
+                                    texts[index],
+                                    style: TextStyle(
+                                      color: curentTab == index
+                                          ? Colors.green
+                                          : Colors.grey[800],
+                                      fontSize: 0.023 * width,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        )
+                      : Container(
+                          width: 0.2 * width,
+                          child: MaterialButton(
+                            minWidth: 40,
+                            onPressed: () {
+                              setState(
+                                () {
+                                  currentScreen = screens[index];
+                                  curentTab = index;
+                                },
+                              );
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  icons[index],
+                                  color: curentTab == index
+                                      ? Colors.green
+                                      : Colors.grey[800],
+                                ),
+                                Text(
+                                  texts[index],
+                                  style: TextStyle(
+                                    color: curentTab == index
+                                        ? Colors.green
+                                        : Colors.grey[800],
+                                    fontSize: 0.023 * width,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                 )
                 .toList(),
           ),
