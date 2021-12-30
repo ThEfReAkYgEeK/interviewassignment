@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:technosoftwares/pages/newplanpage.dart';
 import 'package:technosoftwares/pages/plandetailspage.dart';
 
 class PlansPage extends StatefulWidget {
@@ -145,7 +146,14 @@ class _PlansPageState extends State<PlansPage> {
                         Icons.add,
                         color: Colors.green,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewPlanPage(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Container(
