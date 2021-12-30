@@ -48,16 +48,23 @@ class _CentralWidgetState extends State<CentralWidget> {
         child: currentScreen,
         bucket: bucket,
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        child: Icon(
-          Icons.qr_code_scanner,
+      floatingActionButton: Visibility(
+        visible: !isCharging,
+        child: FloatingActionButton(
+          backgroundColor: Colors.green,
+          child: Icon(
+            Icons.qr_code_scanner,
+          ),
+          onPressed: () {
+            setState(() {
+              isCharging = true;
+            });
+          },
         ),
-        onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: isCharging ? null : CircularNotchedRectangle(),
         notchMargin: 10,
         child: Container(
           height: 60,
@@ -66,43 +73,41 @@ class _CentralWidgetState extends State<CentralWidget> {
             children: [0, 1, 2, 3, 4]
                 .map<Widget>(
                   (index) => index == 2
-                      ? Visibility(
-                          visible: isCharging ? true : false,
-                          child: Container(
-                            width: 0.2 * width,
-                            child: MaterialButton(
-                              minWidth: 40,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    currentScreen = screens[index];
-                                    curentTab = index;
+                      ? Container(
+                          width: 0.2 * width,
+                          child: isCharging
+                              ? MaterialButton(
+                                  minWidth: 40,
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        isCharging = false;
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Icon(
-                                    icons[index],
-                                    color: curentTab == index
-                                        ? Colors.green
-                                        : Colors.grey[800],
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Icon(
+                                        icons[index],
+                                        color: curentTab == index
+                                            ? Colors.green
+                                            : Colors.grey[800],
+                                      ),
+                                      Text(
+                                        texts[index],
+                                        style: TextStyle(
+                                          color: curentTab == index
+                                              ? Colors.green
+                                              : Colors.grey[800],
+                                          fontSize: 0.023 * width,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    texts[index],
-                                    style: TextStyle(
-                                      color: curentTab == index
-                                          ? Colors.green
-                                          : Colors.grey[800],
-                                      fontSize: 0.023 * width,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                                )
+                              : Container(),
                         )
                       : Container(
                           width: 0.2 * width,

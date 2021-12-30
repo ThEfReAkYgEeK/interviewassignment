@@ -15,18 +15,27 @@ class _PlansPageState extends State<PlansPage> {
       "slots": 3,
       "isExpired": false,
       "isExpiring": false,
+      "totalEnergy": 380,
+      "energy": 200,
+      "totalSlots": 4,
     },
     {
       "name": "Domus Condo",
       "slots": 3,
       "isExpired": false,
       "isExpiring": true,
+      "totalEnergy": 480,
+      "energy": 280,
+      "totalSlots": 3,
     },
     {
       "name": "Axxel Innovation Centre",
       "slots": 8,
       "isExpired": true,
       "isExpiring": true,
+      "totalEnergy": 800,
+      "energy": 800,
+      "totalSlots": 8,
     }
   ];
   @override
