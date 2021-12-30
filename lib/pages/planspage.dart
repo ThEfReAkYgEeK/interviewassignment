@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:technosoftwares/pages/plandetailspage.dart';
 
 class PlansPage extends StatefulWidget {
   @override
@@ -193,22 +194,29 @@ class _PlansPageState extends State<PlansPage> {
                                             12), // <-- Radius
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PlanDetailPage(plans[index]),
+                                        ),
+                                      );
+                                    },
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: 0.60 * width,
                                             child: Column(
                                               children: [
                                                 Text(
                                                   plans[index]["name"],
                                                   style: TextStyle(
                                                     color: Colors.black87,
-                                                    fontSize: 20,
+                                                    fontSize: 18,
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -224,6 +232,9 @@ class _PlansPageState extends State<PlansPage> {
                                                 ),
                                               ],
                                             ),
+                                          ),
+                                          SizedBox(
+                                            width: 1,
                                           ),
                                           plans[index]["isExpiring"]
                                               ? Container(
@@ -290,39 +301,44 @@ class _PlansPageState extends State<PlansPage> {
                                             12), // <-- Radius
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PlanDetailPage(plans[index]),
+                                        ),
+                                      );
+                                    },
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            // width: 0.60 * width,
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  plans[index]["name"],
-                                                  style: TextStyle(
-                                                    color: Colors.black87,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 4,
-                                                ),
-                                                Text(
-                                                  "${plans[index]["slots"]} Slots Available now"
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 12,
-                                                  ),
-                                                ),
-                                              ],
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              plans[index]["name"],
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 18,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              height: 4,
+                                            ),
+                                            Text(
+                                              "${plans[index]["slots"]} Slots Available now"
+                                                  .toString(),
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
