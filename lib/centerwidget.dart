@@ -20,6 +20,22 @@ class _CentralWidgetState extends State<CentralWidget> {
     SettingsPage(),
   ];
 
+  final texts = [
+    "Home",
+    "Network",
+    "Charging",
+    "Plans",
+    "Settings",
+  ];
+
+  final icons = [
+    Icons.home,
+    Icons.location_on,
+    Icons.bolt,
+    Icons.ballot,
+    Icons.settings,
+  ];
+
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = PlansPage();
 
@@ -35,7 +51,7 @@ class _CentralWidgetState extends State<CentralWidget> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         child: Icon(
-          Icons.add,
+          Icons.qr_code_scanner,
         ),
         onPressed: () {},
       ),
@@ -47,158 +63,44 @@ class _CentralWidgetState extends State<CentralWidget> {
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 0.2 * width,
-                child: MaterialButton(
-                  minWidth: 40,
-                  onPressed: () {
-                    setState(
-                      () {
-                        currentScreen = HomePage();
-                        curentTab = 0;
+            children: [0, 1, 2, 3, 4]
+                .map<Widget>(
+                  (index) => Container(
+                    width: 0.2 * width,
+                    child: MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(
+                          () {
+                            currentScreen = screens[index];
+                            curentTab = index;
+                          },
+                        );
                       },
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.home,
-                        color: curentTab == 0 ? Colors.green : Colors.grey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            icons[index],
+                            color: curentTab == index
+                                ? Colors.green
+                                : Colors.grey[800],
+                          ),
+                          Text(
+                            texts[index],
+                            style: TextStyle(
+                              color: curentTab == index
+                                  ? Colors.green
+                                  : Colors.grey[800],
+                              fontSize: 0.023 * width,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Home",
-                        style: TextStyle(
-                          color: curentTab == 0 ? Colors.green : Colors.grey,
-                          fontSize: 0.023 * width,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              Container(
-                width: 0.2 * width,
-                child: MaterialButton(
-                  // minWidth: 40,
-                  onPressed: () {
-                    setState(
-                      () {
-                        currentScreen = NetworkPage();
-                        curentTab = 1;
-                      },
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        color: curentTab == 1 ? Colors.green : Colors.grey,
-                      ),
-                      Text(
-                        "Network",
-                        style: TextStyle(
-                          color: curentTab == 1 ? Colors.green : Colors.grey,
-                          fontSize: 0.023 * width,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: 0.2 * width,
-                child: MaterialButton(
-                  // minWidth: 40,
-                  onPressed: () {
-                    setState(
-                      () {
-                        currentScreen = ChargingPage();
-                        curentTab = 2;
-                      },
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.bolt,
-                        color: curentTab == 2 ? Colors.green : Colors.grey,
-                      ),
-                      Text(
-                        "Charging",
-                        style: TextStyle(
-                          color: curentTab == 2 ? Colors.green : Colors.grey,
-                          fontSize: 0.023 * width,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: 0.2 * width,
-                child: MaterialButton(
-                  // minWidth: 40,
-                  onPressed: () {
-                    setState(
-                      () {
-                        currentScreen = PlansPage();
-                        curentTab = 3;
-                      },
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.ballot,
-                        color: curentTab == 3 ? Colors.green : Colors.grey,
-                      ),
-                      Text(
-                        "Plans",
-                        style: TextStyle(
-                          color: curentTab == 3 ? Colors.green : Colors.grey,
-                          fontSize: 0.023 * width,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: 0.2 * width,
-                child: MaterialButton(
-                  // minWidth: 40,
-                  onPressed: () {
-                    setState(
-                      () {
-                        currentScreen = SettingsPage();
-                        curentTab = 4;
-                      },
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.settings,
-                        color: curentTab == 4 ? Colors.green : Colors.grey,
-                      ),
-                      Text(
-                        "Settings",
-                        style: TextStyle(
-                          color: curentTab == 4 ? Colors.green : Colors.grey,
-                          fontSize: 0.023 * width,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                )
+                .toList(),
           ),
         ),
       ),
